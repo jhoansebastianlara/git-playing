@@ -1,3 +1,4 @@
 # git-playing
 
-[] Line one
+Line one
+Line two
