@@ -1,0 +1,21 @@
+sudo: required
+
+language: go
+
+go:
+  - master
+
+branches:
+  only:
+  - travis-test
+
+services:
+  - docker
+
+install: true
+
+script: docker build -t pipersite.azurecr.io/pipersite:v0.0.1 .
+
+after_success:
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin pipersite.azurecr.io
+  - docker push pipersite.azurecr.io/pipersite:v0.0.1
